@@ -21,7 +21,7 @@ export default function About() {
       <p className='mb-4 text-slate-700'>
      <span className='text-lg font-bold'>Renting :</span>Whether you're a landlord or a tenant, our team offers personalized assistance to find the ideal rental match. We handle property listings, tenant screening, and lease agreements to ensure a hassle-free rental experience.
       </p>
-      <p className='mb-4 text-slate-700'>Our team of agents has a wealth of experience and knowledge in the real estate industry, and we are committed to providing the highest level of service to our clients. We believe that buying or selling a property should be an exciting and rewarding experience, and we are dedicated to making that a reality for each and every one of our clients.</p>
+      
       <h1 className='text-2xl font-bold mb-4 text-slate-800 mt-10'>Our Commitment</h1>
       <p className='mb-4 text-slate-700'>
       Nest Questors believes that buying or selling a property should be an exciting and rewarding experience. We are dedicated to making this a reality for each of our clients by providing reliable support and expert advice. Trust Nest Questors to be your guide in the real estate market, and let us help you achieve your property goals with confidence and ease.
