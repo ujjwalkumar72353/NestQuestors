@@ -9,6 +9,7 @@ import Profile from './pages/Profile';
 import Header from './Component/Header';
 import Footer from './Component/Footer';
 import SignUp from './pages/Signup';
+import PrivateRoute from './Component/PrivateRoute';
 
 
 const App = () => {
@@ -19,7 +20,9 @@ const App = () => {
   <Route path='/sign-in' element={<Signin/>}/>
   <Route path='/sign-up' element={<SignUp/>}/>
   <Route path='/about' element={<About/>}/>
+  <Route element={<PrivateRoute/>}>
   <Route path='/profile' element={<Profile/>}/>
+  </Route>
   </Routes>
   <Footer/>
   </BrowserRouter>
