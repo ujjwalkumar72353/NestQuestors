@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(cors());
 
 app.listen(3002,()=>{
-    console.log('server is running at port 3001!!');
+    console.log('server is running at port 3002!!');
 })
 
 app.use('/api/user', userRouter);
