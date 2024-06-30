@@ -9,6 +9,7 @@ import {
 } from 'firebase/storage';
 import { app } from '../firebase';
 import { updateUserStart,updateUserSuccess,updateUserFailure,deleteUserStart,deleteUserSuccess,deleteUserFailure,signOutUserStart,signOutUserSuccess,signOutUserFailure} from '../redux/user/userSlice';
+import { Link } from 'react-router-dom';
 
 const Profile = () => {
   const fileRef=useRef(null);
@@ -155,7 +156,13 @@ const Profile = () => {
     className='border p-3 rounded-lg'
   />
       <button disabled={loading} className='bg-slate-700 p-3 text-white uppercase rounded-lg hover:opacity-95 disabled:opacity-80'> {loading ? 'Loading...' : 'Update'}</button>
-     </form>
+      <Link
+      className='bg-green-700 text-white p-3 rounded-lg uppercase text-center hover:opacity-95'
+      to={'/create-listing'}
+    >
+      Create Listing
+    </Link>
+      </form>
      <div className='flex justify-between mt-5'>
         <span
           onClick={handleDeleteUser}
@@ -168,7 +175,7 @@ const Profile = () => {
         </span>
       </div>
 
-      <p className='text-red-700 mt-5'>{error ? error : ''}</p>
+      {/* <p className='text-red-700 mt-5'>{error ? error : ''}</p> */}
       <p className='text-green-700 mt-5'>
         {updateSuccess ? 'User is updated successfully!' : ''}
       </p>
