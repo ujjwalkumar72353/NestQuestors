@@ -242,12 +242,13 @@ export default function Search() {
               Loading...
             </p>
           )}
-
+           <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full'>
           {!loading &&
             listings &&
             listings.map((listing) => (
               <ListingItem key={listing._id} listing={listing} />
             ))}
+            </div>
 
           {showMore && (
             <button

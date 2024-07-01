@@ -49,16 +49,16 @@ export default function Header() {
         </form>
         <ul className='flex gap-4'>
         <Link to='/'>
-        <li className='hidden text-lg sm:inline text-slate-400 hover:underline'>Home</li>
+        <li className='hidden text-lg sm:inline text-slate-400 '>Home</li>
         </Link>
         <Link to='/about'>
-        <li className='hidden text-lg sm:inline text-slate-400 hover:underline'>About</li>
+        <li className='hidden text-lg sm:inline text-slate-400 '>About</li>
         </Link>
         <Link to='/profile'>
         {
           currentUser ?(<img className='rounded-full h-7 w-7 object-cover' src={currentUser.avatar} alt='profile'/>
           ):( 
-            <li className=' sm:inline text-lg text-slate-400 hover:underline mr-3'>Login</li>
+            <li className=' sm:inline border-2 border-slate-400 p-2 rounded-lg   text-lg text-slate-200 '>Login</li>
           )
         }
         </Link>
