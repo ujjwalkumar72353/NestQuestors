@@ -24,12 +24,12 @@ export default function Header() {
     }
   }, [location.search]);
   return (
-    <header className='bg-slate-200 shadow-md'>
+    <header className='bg-gray-800 shadow-md'>
       <div className='flex justify-between items-center max-w-6xl mx-auto p-3'>
         <Link to='/'>
           <h1 className='font-bold text-sm sm:text-xl flex flex-wrap'>
-            <span className='text-slate-500'>Sahand</span>
-            <span className='text-slate-700'>Estate</span>
+          <span className='text-slate-400 text-lg sm:text-2xl'>Nest</span>
+          <span className='text-slate-500 text-lg sm:text-2xl'>Questors</span>
           </h1>
         </Link>
         <form
@@ -48,29 +48,33 @@ export default function Header() {
           </button>
         </form>
         <ul className='flex gap-4'>
-          <Link to='/'>
-            <li className='hidden sm:inline text-slate-700 hover:underline'>
-              Home
-            </li>
-          </Link>
-          <Link to='/about'>
-            <li className='hidden sm:inline text-slate-700 hover:underline'>
-              About
-            </li>
-          </Link>
-          <Link to='/profile'>
-            {currentUser ? (
-              <img
-                className='rounded-full h-7 w-7 object-cover'
-                src={currentUser.avatar}
-                alt='profile'
-              />
-            ) : (
-              <li className=' text-slate-700 hover:underline'> Sign in</li>
-            )}
-          </Link>
-        </ul>
+        <Link to='/'>
+        <li className='hidden text-lg sm:inline text-slate-400 hover:underline'>Home</li>
+        </Link>
+        <Link to='/about'>
+        <li className='hidden text-lg sm:inline text-slate-400 hover:underline'>About</li>
+        </Link>
+        <Link to='/profile'>
+        {
+          currentUser ?(<img className='rounded-full h-7 w-7 object-cover' src={currentUser.avatar} alt='profile'/>
+          ):( 
+            <li className=' sm:inline text-lg text-slate-400 hover:underline mr-3'>Login</li>
+          )
+        }
+        </Link>
+      </ul>
       </div>
     </header>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
