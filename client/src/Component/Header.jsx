@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 const Header = () => {
   const {currentUser}=useSelector(state=>state.user);
   return (
-    <header className='bg-gray-800 text-white shadow-md'>
+    <header className='dark:bg-gray-800 dark:bg-opacity-100 text-white shadow-md'>
         <div className='flex justify-between items-center max-w-6xl mx-auto p-4'>
         <Link to='/'>
         <h1 className='font-bold text-sm sm:text-lg flex flex-wrap'>
