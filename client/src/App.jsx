@@ -14,8 +14,11 @@ import CreateListing from './pages/CreateListing';
 
 
 const App = () => {
-  return <BrowserRouter>
+  return (
+    <div className='flex flex-col min-h-screen'>
+  <BrowserRouter>
    <Header/>
+   <div className='flex-1'>
   <Routes>
   <Route path='/' element={<Home/>}/>
   <Route path='/sign-in' element={<Signin/>}/>
@@ -26,8 +29,11 @@ const App = () => {
      <Route path='/create-listing' element={<CreateListing />} />
    </Route>
   </Routes>
+  </div>
   <Footer/>
   </BrowserRouter>
+  </div>
+  )
 }
 
 export default App
