@@ -54,9 +54,6 @@ The application is deployed on the Render platform, making it accessible for pub
 
 Contributions are welcome! Please fork the repository and submit a pull request for any enhancements or bug fixes.
 
-## 📜 License
-
-This project is licensed under the MIT License.
 
 ---
 
