@@ -23,11 +23,12 @@ NestQuestors, also known as **Bachelor House**, is a real estate platform specif
 
 ## 🛠️ Technologies Used
 
-- **Frontend:** React.js, Redux Toolkit
-- **Backend:** Node.js, Express.js
-- **Database:** MongoDB
-- **Authentication:** JWT, OAuth
-- **Deployment:** Render
+<span style="color: #3498db;">Frontend:</span> React.js, Redux Toolkit  
+<span style="color: #3498db;">Backend:</span> Node.js, Express.js  
+<span style="color: #3498db;">Database:</span> MongoDB  
+<span style="color: #3498db;">Authentication:</span> JWT, OAuth  
+<span style="color: #3498db;">Deployment:</span> Render
+
 
 ## ⚙️ Installation & Setup
 
