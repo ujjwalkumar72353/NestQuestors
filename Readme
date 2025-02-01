@@ -1,0 +1,86 @@
+NestQuestors (Bachelor House)
+
+NestQuestors, also known as Bachelor House, is a real estate platform specifically designed for bachelors looking for rental properties. While many existing platforms mainly cater to families or rarely consider bachelors, Bachelor House is built with the unique needs of bachelors in mind. The idea stems from personal experiences of the hassle involved in finding a rental property, where traditional methods force individuals to travel to a city, stay in a hotel for several days, and then search for rooms. This process not only consumes a lot of time but is also quite costly.
+
+🚀 Features
+
+Property Listings: Browse through an extensive list of properties with detailed descriptions and images.
+
+Advanced Search: Filter properties based on location, price, size, amenities, and other criteria to find the perfect match.
+
+User Authentication: Secure login and registration for users to protect their data.
+
+Booking & Scheduling: Schedule property visits conveniently through the platform.
+
+Reviews and Ratings: Read genuine reviews and ratings from other bachelors to make informed decisions.
+
+Wishlist: Save your favorite properties for easy access later.
+
+Communication Tools: Directly contact property owners or agents through the platform.
+
+🛠️ Technologies Used
+
+Frontend: React.js for dynamic user interfaces.
+
+Backend: Node.js with Express.js for robust API handling.
+
+Database: MongoDB for flexible and scalable data storage.
+
+Authentication: JWT (JSON Web Tokens) for secure user authentication.
+
+Cloud Services: Firebase
+
+📦 Installation
+
+Clone the repository:
+
+git clone https://github.com/ujjwalkumar72353/NestQuestors.git
+
+Navigate to the project directory:
+
+cd NestQuestors
+
+Install dependencies:
+
+npm install
+
+Set up environment variables:
+Create a .env file in the root directory and add the necessary environment variables.
+
+Run the application:
+
+npm start
+
+💡 Usage
+
+Register or log in to the platform.
+
+Use the search filters to find properties that meet your criteria.
+
+View detailed property information, including photos, descriptions, and amenities.
+
+Schedule visits or contact property owners directly through the platform.
+
+Save favorite properties to your wishlist for easy access.
+
+🤝 Contributing
+
+Contributions are welcome! Please follow these steps:
+
+Fork the repository.
+
+Create your feature branch (git checkout -b feature-name).
+
+Commit your changes (git commit -m 'Add new feature').
+
+Push to the branch (git push origin feature-name).
+
+Open a pull request.
+
+
+🙌 Acknowledgements
+
+Thanks to all contributors and users who have supported the project.
+
+Inspired by the real-life challenges faced by bachelors in finding rental properties.
+
