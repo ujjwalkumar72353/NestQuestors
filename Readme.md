@@ -220,7 +220,5 @@ I was responsible for:
 
 ## 📬 Contact
 
-Ujjwal Kumar - [ujjwalkumar72353@gmail.com](mailto:ujjwalkumar72353@gmail.com)
-
 Project Link: [https://github.com/ujjwalkumar72353/NestQuestors](https://github.com/ujjwalkumar72353/NestQuestors)
 
