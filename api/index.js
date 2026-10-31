@@ -1,52 +1,52 @@
-import express from "express";
-import mongoose from "mongoose";
-import dotenv from 'dotenv';
-import userRouter from "./routes/user.route.js";
-import authRouter from "./routes/auth.route.js";
-import cors from "cors";
-import cookieParser from "cookie-parser";
-import path from 'path';
-import listingRouter from "./routes/listing.route.js";
-dotenv.config();
+import "./config/env.js";
+import { connectDb, disconnectDb } from "./config/db.js";
+import createApp from "./app.js";
+import Listing from "./models/listing.model.js";
+import { seedDemoData } from "./seed.js";
 
-mongoose.connect(process.env.MONGO).then(()=>{
-    console.log('connected to MongoDB!');
-}).catch((err) => {
-    console.log(err);
-  })
+const port = process.env.PORT || 3002;
 
-const __dirname = path.resolve();
+// Listings created before effectivePrice existed still need to be searchable
+const backfillListings = () =>
+  Listing.updateMany(
+    { effectivePrice: { $exists: false } },
+    [
+      {
+        $set: {
+          effectivePrice: {
+            $cond: [
+              { $and: ["$offer", { $gt: ["$discountPrice", 0] }] },
+              "$discountPrice",
+              "$regularPrice",
+            ],
+          },
+        },
+      },
+    ],
+    { updatePipeline: true }
+  );
 
-const app = express();
+const start = async () => {
+  const { isLocal } = await connectDb();
+  await backfillListings();
+  if (isLocal) {
+    await seedDemoData();
+  }
+  const server = createApp().listen(port, () =>
+    console.log(`Server running on port ${port}`)
+  );
 
+  const shutdown = async () => {
+    server.close();
+    await disconnectDb();
+    process.exit(0);
+  };
+  ["SIGINT", "SIGTERM", "SIGUSR2"].forEach((signal) =>
+    process.once(signal, shutdown)
+  );
+};
 
-app.use(express.json());
-app.use(cookieParser());
-
-app.use(cors());
-
-app.listen(3002,()=>{
-    console.log('server is running at port 3002!!');
-})
-
-app.use('/api/user', userRouter);
-app.use('/api/auth', authRouter);
-app.use('/api/listing',listingRouter);
-
-
-app.use(express.static(path.join(__dirname, '/client/dist')));
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
-})
-
-
-app.use((err,req,res,next)=>{
-    const statusCode = err.statusCode || 500;
-    const message = err.message || 'Internal Server error';
-    return res.status(statusCode).json({
-      success:false,
-      statusCode,
-      message,
-    })
- })
+start().catch((error) => {
+  console.error(error);
+  process.exit(1);
+});
