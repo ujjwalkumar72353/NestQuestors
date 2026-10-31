@@ -2,6 +2,122 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-    background-color:rgb(241,245,241);
+:root {
+  --canvas: #faf8f5;
+  --surface: #ffffff;
+  --raised: #f1eee8;
+  --line: #e6e1d8;
+  --ink: #17201e;
+  --muted: #5c6663;
+  --brand: #0f766e;
+  --brand-soft: rgba(15, 118, 110, 0.1);
+  --on-brand: #ffffff;
+  --accent: #c2410c;
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --canvas: #0e1413;
+  --surface: #161e1c;
+  --raised: #202a28;
+  --line: #2d3936;
+  --ink: #f1f5f3;
+  --muted: #a3b0ac;
+  --brand: #2dd4bf;
+  --brand-soft: rgba(45, 212, 191, 0.13);
+  --on-brand: #06211d;
+  --accent: #fb923c;
+  color-scheme: dark;
+}
+
+body {
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: "Outfit Variable", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 h-11 font-medium cursor-pointer transition-colors duration-150 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-primary {
+    @apply btn bg-brand text-on-brand hover:opacity-90;
+  }
+  .btn-ghost {
+    @apply btn border border-line bg-surface hover:bg-raised;
+  }
+  .btn-danger {
+    @apply btn border border-red-500/40 text-red-700 dark:text-red-300 hover:bg-red-500/10;
+  }
+  .input {
+    @apply w-full h-11 rounded-xl border border-line bg-surface px-3 text-ink placeholder:text-muted outline-none transition-colors focus:border-brand;
+  }
+  .card {
+    @apply rounded-2xl border border-line bg-surface;
+  }
+}
+
+.leaflet-container {
+  font-family: inherit;
+  background: var(--raised);
+}
+
+[data-theme="dark"] .leaflet-tile {
+  filter: invert(1) hue-rotate(180deg) brightness(0.9) contrast(0.9);
+}
+
+.price-pin {
+  background: var(--surface);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 3px 9px;
+  font-weight: 600;
+  font-size: 12px;
+  white-space: nowrap;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  transform: translate(-50%, -50%);
+  width: max-content;
+}
+
+.price-pin:hover {
+  background: var(--brand);
+  color: var(--on-brand);
+}
+
+.cluster-pin {
+  height: 40px;
+  width: 40px;
+  border-radius: 999px;
+  background: var(--brand);
+  color: var(--on-brand);
+  font-weight: 700;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid var(--surface);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transform: translate(-50%, -50%);
+}
+
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background: var(--surface);
+  color: var(--ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }

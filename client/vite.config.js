@@ -1,16 +1,12 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react-swc';
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 
-// https://vitejs.dev/config/
+const api = "http://localhost:3002";
+
 export default defineConfig({
-  server: {
-    proxy: {
-      '/api': {
-        target: 'http://localhost:3002',
-        secure: false,
-      },
-    },
-  },
   plugins: [react()],
-
+  server: {
+    port: 5173,
+    proxy: { "/api": api, "/uploads": api },
+  },
 });
