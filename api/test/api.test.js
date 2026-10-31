@@ -615,6 +615,31 @@ test("chat: an OpenAI failure falls back to search", async () => {
   }
 });
 
+test("public demo seed keeps real users and has no known password", async () => {
+  const { seedDemoData, DEMO_PASSWORD } = await import("../seed.js");
+  await mongoose.connection.dropDatabase();
+  await User.syncIndexes();
+  const real = await session("realuser");
+  await seedDemoData({ publicSite: true });
+  assert.equal(await Listing.countDocuments(), 1200);
+  await real.agent.get("/api/auth/me").expect(200);
+  await request(app)
+    .post("/api/auth/signin")
+    .send({ email: "owner@demo.com", password: DEMO_PASSWORD })
+    .expect(401);
+  await seedDemoData({ publicSite: true });
+  assert.equal(await Listing.countDocuments(), 1200);
+});
+
+test("options report demo mode", async () => {
+  process.env.SEED_DEMO = "true";
+  const on = await request(app).get("/api/listing/options").expect(200);
+  assert.equal(on.body.demoSite, true);
+  delete process.env.SEED_DEMO;
+  const off = await request(app).get("/api/listing/options").expect(200);
+  assert.equal(off.body.demoSite, false);
+});
+
 test("unknown API routes return JSON 404", async () => {
   const res = await request(app).get("/api/nope").expect(404);
   assert.equal(res.body.success, false);

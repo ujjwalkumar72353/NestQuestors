@@ -1,3 +1,4 @@
+import { randomBytes } from "node:crypto";
 import bcryptjs from "bcryptjs";
 import Inquiry from "./models/inquiry.model.js";
 import Listing from "./models/listing.model.js";
@@ -137,15 +138,20 @@ const buildListing = (index, owners, random) => {
   };
 };
 
-// Only ever fills an empty database
-export const seedDemoData = async () => {
-  if ((await User.estimatedDocumentCount()) > 0) {
+const findOrCreateUser = async (values) =>
+  (await User.findOne({ email: values.email })) || User.create(values);
+
+// Only ever fills a database with no listings. Public sites get an unguessable
+// owner password, because the local demo password is written in this repository.
+export const seedDemoData = async ({ publicSite = false } = {}) => {
+  if ((await Listing.estimatedDocumentCount()) > 0) {
     return;
   }
-  const password = await bcryptjs.hash(DEMO_PASSWORD, 10);
-  const [owner, renter] = await User.create([
-    { username: "arjun_owner", email: "owner@demo.com", password },
-    { username: "rohan_renter", email: "renter@demo.com", password },
+  const secret = publicSite ? randomBytes(32).toString("hex") : DEMO_PASSWORD;
+  const password = await bcryptjs.hash(secret, 10);
+  const [owner, renter] = await Promise.all([
+    findOrCreateUser({ username: "arjun_owner", email: "owner@demo.com", password }),
+    findOrCreateUser({ username: "rohan_renter", email: "renter@demo.com", password }),
   ]);
   const random = createRandom(42);
   const docs = Array.from({ length: LISTING_COUNT }, (_, index) => {

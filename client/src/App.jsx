@@ -3,6 +3,7 @@ import { Toaster } from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import ChatWidget from "./components/ChatWidget";
+import DemoBanner from "./components/DemoBanner";
 import CompareTray from "./components/CompareTray";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -43,6 +44,7 @@ function App() {
     <BrowserRouter>
       <ScrollToTop />
       <div className="flex flex-col min-h-screen">
+        <DemoBanner />
         <Header />
         <main className="flex-1">
           <Suspense fallback={<div className="min-h-[60vh]" />}>

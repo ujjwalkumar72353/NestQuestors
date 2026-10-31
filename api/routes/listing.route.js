@@ -84,7 +84,12 @@ const compareSchema = z.object({
 });
 
 router.get("/options", (req, res) => {
-  res.json({ cities: CITIES, amenities: AMENITIES, facings: FACINGS });
+  res.json({
+    cities: CITIES,
+    amenities: AMENITIES,
+    facings: FACINGS,
+    demoSite: process.env.SEED_DEMO === "true",
+  });
 });
 
 router.get(

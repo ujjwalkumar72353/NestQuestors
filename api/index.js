@@ -29,8 +29,9 @@ const backfillListings = () =>
 const start = async () => {
   const { isLocal } = await connectDb();
   await backfillListings();
-  if (isLocal) {
-    await seedDemoData();
+  const demoSite = process.env.SEED_DEMO === "true";
+  if (isLocal || demoSite) {
+    await seedDemoData({ publicSite: !isLocal });
   }
   const server = createApp().listen(port, () =>
     console.log(`Server running on port ${port}`)

@@ -68,4 +68,4 @@ npm run build
 npm start
 ```
 
-The server hosts the built client on one port. Demo data is only created for the local database, so production starts empty.
+The server hosts the built client on one port. Production starts empty. For a portfolio demo, set `SEED_DEMO=true` to add 1,200 clearly labelled demo rentals. The site shows a banner, and the demo owner gets a random password.
